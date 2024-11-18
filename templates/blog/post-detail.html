@@ -12,5 +12,6 @@
       {{ post.content|safe }}
     {% enddiv %}
   {% enddiv %}
+  {% include "blog/post-comments.html" %}
   {% recent_posts %}
 {% endblock %}
