@@ -52,11 +52,13 @@ class Dev(Configuration):
         'django.contrib.messages',
         'django.contrib.staticfiles',
 
-        'blog'
+        'blog',
+        'debug_toolbar'
     ]
 
     MIDDLEWARE = [
         'django.middleware.security.SecurityMiddleware',
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
         #'django.middleware.csrf.CsrfViewMiddleware',
@@ -167,6 +169,8 @@ class Dev(Configuration):
 
     CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
     CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+    INTERNAL_IPS = ["192.168.10.226"]
 
 class Prod(Dev):
     DEBUG = values.BooleanValue(False)
