@@ -19,12 +19,25 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 from blog import views
+from blango_auth.views import profile
+from django_registration.backends.activation.views import RegistrationView
+from blango_auth.forms import BlangoRegistrationForm
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
     path('post/<slug>/', views.post_detail, name='blog-post-detail'),
     path('ip/', views.get_ip),
+    #Должно быть перед accounts
+    path(
+      'accounts/register/', 
+      RegistrationView.as_view(form_class=BlangoRegistrationForm),
+      name='django_registration_register'
+    ),
+    path("accounts/", include("django_registration.backends.activation.urls")),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/profile/', profile, name='profile'),
+    
 ]
 
 if settings.DEBUG:
