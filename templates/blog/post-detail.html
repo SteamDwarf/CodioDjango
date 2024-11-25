@@ -13,5 +13,13 @@
     {% enddiv %}
   {% enddiv %}
   {% include "blog/post-comments.html" %}
+  {% if post.author.profile %}
+    {% row %}
+      {% col %}
+        <h4>About the author</h4>
+        <p>{{ post.author.profile.bio }}</p>
+      {% enddiv %}
+    {% enddiv %}
+  {% endif %}
   {% recent_posts %}
 {% endblock %}
